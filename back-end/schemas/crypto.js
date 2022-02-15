@@ -6,14 +6,16 @@ const cryptoSchema = Joi.object({
     .valid('BRL', 'CAN', 'EUR')
     .not()
     .empty()
-    .required(),
+    .required()
+    .error(() => (new Error('Moeda inválida'))),
   value: Joi
     .number()
     .integer()
     .not()
     .empty()
     .min(1)
-    .required(),
-}).error(() => (new Error('Campos inválidos')));
+    .required()
+    .error(() => (new Error('Valor inválido'))),
+});
 
 module.exports = cryptoSchema;

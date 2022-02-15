@@ -1,13 +1,9 @@
-const jwt = require('jsonwebtoken');
+const md5 = require('md5');
 const { successResponses } = require('../utils/httpStatusCodes');
-
-const secret = '93879Ioijioja09';
-const passwordLength = 16;
-const jwtConfig = { expiresIn: '12h', algorithm: 'HS256' };
 
 const login = async (req, res) => {
   const { email } = req.body;
-  const token = jwt.sign({ email }, secret, jwtConfig).slice(0, passwordLength);
+  const token = md5(email).slice(0, 16);
   return res.status(successResponses.ok).json({ token });
 };
 

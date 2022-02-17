@@ -3,17 +3,16 @@ const Joi = require('joi');
 const cryptoSchema = Joi.object({
   currency: Joi
     .string()
-    .valid('BRL', 'CAN', 'EUR')
+    .valid('BRL', 'CAD', 'EUR')
     .not()
     .empty()
     .required()
     .error(() => (new Error('Moeda inválida'))),
   value: Joi
     .number()
-    .integer()
+    .greater(0)
     .not()
     .empty()
-    .min(1)
     .required()
     .error(() => (new Error('Valor inválido'))),
 });

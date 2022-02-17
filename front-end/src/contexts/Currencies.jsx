@@ -7,19 +7,19 @@ const initialState = () => ({
   errorMessage: null,
 });
 
-export const HomeContext = createContext();
+export const CurrenciesContext = createContext();
 
-export function HomeProvider({ children }) {
+export function CurrenciesProvider({ children }) {
   const [values, setValues] = useState(initialState);
   const memoizedValues = useMemo(() => ({ values, setValues }), [values]);
 
   return (
-    <HomeContext.Provider value={memoizedValues}>
+    <CurrenciesContext.Provider value={memoizedValues}>
       { children }
-    </HomeContext.Provider>
+    </CurrenciesContext.Provider>
   );
 }
 
-HomeProvider.propTypes = {
+CurrenciesProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

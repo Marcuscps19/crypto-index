@@ -16,7 +16,7 @@ function Home() {
 
     const updateCurrencies = (value) => 
         currencies.map((currency) =>  {
-            const calculatedRate = value ? currency['rate_float'] * value : currency['calculated_rate'];
+            const calculatedRate = value ? currency['rate_float'] * value : 0;
     
                if(currency['code'] !== 'BTC') {
                  return ({ ...currency, 'calculated_rate': formatToUSADollar(calculatedRate) });

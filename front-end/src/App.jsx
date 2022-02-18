@@ -6,6 +6,8 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import UpdatePrice from './pages/UpdatePrice';
 import {CurrenciesProvider} from './contexts/Currencies'
+import './reset.css'
+import './styles.css'
 
 // Source Routes Authentication https://gist.github.com/mjackson/d54b40a094277b7afdd6b81f51a0393f
 function App() {

@@ -16,7 +16,7 @@ export const formatValue = (code, value) => {
 function CurrencyInput({code, value}) {
         return (
             <label htmlFor={code}>
-                {code}
+                {code}:
                 <input value={formatValue(code, value)} name={code} type="text" disabled />
             </label>
         )

@@ -1,0 +1,350 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,300&family=Roboto:wght@100&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  background-color: #8a2be2;
+}
+
+/* Login */
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.page-title {
+  border-radius: 1rem;
+  color: #dbd5cd;
+  font-size: 8rem;
+  padding: 1rem 1rem 1.5rem;
+  position: absolute;
+  text-shadow: 2px 2px 8px black;
+}
+
+/* https://www.shapedivider.app/ */
+.custom-shape-divider-top-1645146547 {
+  left: 0;
+  line-height: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.custom-shape-divider-top-1645146547 svg {
+  display: block;
+  height: 226px;
+  position: relative;
+  width: calc(100% + 1.3px);
+}
+
+.custom-shape-divider-top-1645146547 .shape-fill {
+  fill: #f18701;
+}
+
+.container-body {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  position: absolute;
+  top: 220px;
+  max-height: 2000px;
+  width: 80%;
+}
+
+.container-form {
+  align-items: center;
+  background-color: #dbd5cd;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  box-shadow: 10px 10px;
+  width: 60%;
+}
+
+.form-login,
+.form-title {
+  display: flex;
+  font-size: 2em;
+  font-weight: 700;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 60%;
+}
+
+.form-title {
+  color: #f18701;
+  letter-spacing: 0.2em;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 1px #5a5151;
+  padding: 1.5rem;
+}
+
+.form-data {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form-data input {
+  background-color: #8a2be2;
+  border: none;
+  border-radius: 0.4rem;
+  color: #fff;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  padding: 0.3rem;
+  width: 100%;
+}
+
+.form-data span,
+.form-home span {
+  color: #f00;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-data button,
+.form-home button {
+  background-color: #8a2be2;
+  border: none;
+  border-radius: 0.4rem;
+  color: #fff;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  padding: 0.3rem;
+  width: 60%;
+}
+
+.form-data button:hover,
+.form-home button:hover {
+  background-color: #f18701;
+  cursor: pointer;
+}
+
+.form-data input::placeholder {
+  color: #f8f7f7;
+  padding: 0.3rem;
+}
+
+.aside-info {
+  letter-spacing: 0.1rem;
+  line-height: 2rem;
+  text-shadow: 2px 2px 8px black;
+}
+
+.aside-info h3 {
+  color: #f18701;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.aside-info p {
+  color: #fc6456;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 1rem;
+  text-align: center;
+}
+
+.aside-info ul {
+  color: #f0f8ff;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 2.2rem;
+  margin: auto;
+  width: 40%;
+}
+
+/* Home */
+.container-home {
+  display: flex;
+}
+
+.form-home {
+  align-items: center;
+  background-color: #dbd5cd;
+  box-shadow: 10px 10px;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 1rem;
+  width: 100%;
+  padding: 2rem;
+}
+
+.container-btc-input {
+  display: flex;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.container-btc-input label {
+  font-size: 2rem;
+}
+
+.container-btc-input input,
+.container-currencies input {
+  background-color: #8a2be2;
+  border: none;
+  border-radius: 0.4rem;
+  color: #fff;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  margin-left: 1rem;
+  padding: 0.3rem;
+}
+
+.container-btc-input input {
+  width: 20%;
+}
+
+.container-currencies input {
+  width: 70%;
+}
+
+.container-currencies {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+/* Loader  */
+
+/* https://dev.to/afif/another-100-css-loaders-for-your-next-project-352l */
+.container-loader {
+  display: flex;
+  height: 500px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-loader span {
+  font-size: 2rem;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.spinner-3 {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #f18701 94%, #0000) top/10px 10px no-repeat,
+    conic-gradient(#0000 30%, #f18701);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% { transform: rotate(1turn); }
+}
+
+@media (max-width: 850px) {
+  body {
+    /* https://css-tricks.com/a-complete-guide-to-calc-in-css/ */
+    height: calc(100vh - 80px);
+  }
+
+  .page-title {
+    font-size: 3rem;
+  }
+
+  .container-body {
+    flex-direction: column;
+    padding-bottom: 2rem;
+    width: 100%;
+  }
+
+  .container-form {
+    margin: auto;
+    margin-bottom: 2rem;
+    width: 95%;
+  }
+
+  .form-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    width: 100%;
+  }
+
+  .aside-info h3 {
+    padding: 1rem;
+    font-size: 1.8rem;
+  }
+
+  .aside-info ul {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 2.2rem;
+    width: 80%;
+  }
+
+  /* Home */
+  .form-home {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .container-btc-input {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+  }
+
+  .container-btc-input label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+
+  .container-currencies {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    font-size: 2rem;
+    width: 100%;
+  }
+
+  .container-btc-input input,
+  .container-currencies input {
+    background-color: #8a2be2;
+    border: none;
+    border-radius: 0.4rem;
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    margin: 1rem;
+    padding: 0.3rem;
+  }
+
+  .container-btc-input input {
+    width: 20%;
+  }
+
+  .container-currencies input {
+    width: 70%;
+  }
+}

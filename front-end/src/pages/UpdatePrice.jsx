@@ -4,6 +4,7 @@ import { CurrenciesContext } from '../contexts/Currencies';
 import { formatValue } from '../components/CurrencyInput';
 import NumberFormat from 'react-number-format';
 import axios from 'axios';
+import Loading from '../components/Loading';
 
 function UpdatePrice() {
     const { values, setValues } = useContext(CurrenciesContext);
@@ -29,6 +30,7 @@ function UpdatePrice() {
     })
 
     const getActualCurrencyValue = () => currencies.map((currency) => {
+        console.log(currency)
         if(currency['code'] === currencyCode) {
             return formatValue(currency['code'], currency['rate_float'])
         }
@@ -73,32 +75,34 @@ function UpdatePrice() {
         }
     }
 
-    return !currencies ? <h1>Loading...</h1> : (
-        <form onSubmit={updateCurrency}>
-           <button onClick={() => navigate('/')}>Voltar</button>
-           <label htmlFor="currency">
-                Moeda
-                <select name="currency" onChange={ onSelectChange }>
-                    {getCodesFromCurrencies()}    
-                </select>
-                <span>Valor atual: {getActualCurrencyValue()}</span>
-                
-            </label>
-            <label htmlFor="new-value">
-                Novo valor:
-                <NumberFormat
-                    name="new-value"
-                    thousandSeparator={true}
-                    prefix={getPrefix()}
-                    allowNegative={false}
-                    onValueChange={onInputChange}
-                    decimalSeparator='.'
-                    required
-                />
-            </label>
-            <span>{ errorMessage }</span>
-            <button type="submit">ATUALIZAR</button>
-        </form>
+    return !currencies ? <Loading /> : (
+        <div>
+            <form onSubmit={updateCurrency}>
+            <button type="buttton" onClick={() => navigate('/')}>Voltar</button>
+            <label htmlFor="currency">
+                    Moeda
+                    <select name="currency" onChange={ onSelectChange }>
+                        {getCodesFromCurrencies()}    
+                    </select>
+                    <span>Valor atual: {getActualCurrencyValue()}</span>
+                    
+                </label>
+                <label htmlFor="new-value">
+                    Novo valor:
+                    <NumberFormat
+                        name="new-value"
+                        thousandSeparator={true}
+                        prefix={getPrefix()}
+                        allowNegative={false}
+                        onValueChange={onInputChange}
+                        decimalSeparator='.'
+                        required
+                    />
+                </label>
+                <span>{ errorMessage }</span>
+                <button type="submit">ATUALIZAR</button>
+            </form>
+        </div>
     )
 }
 

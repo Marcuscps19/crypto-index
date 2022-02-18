@@ -27,7 +27,9 @@ function App() {
         path="/update-price"
         element={
           <RequireAuth redirectTo="/login">
-            <UpdatePrice />
+            <CurrenciesProvider>
+              <UpdatePrice />
+            </CurrenciesProvider>
           </RequireAuth>
         }
         ></Route>

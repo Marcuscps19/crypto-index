@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-import axios from 'axios';
+import { useContext } from 'react';
 import { CurrenciesContext } from '../contexts/Currencies';
 import CurrencyInput from '../components/CurrencyInput';
 function Home() {
@@ -8,22 +7,21 @@ function Home() {
     const {values, setValues} = useContext(CurrenciesContext);
     const { currencies, btc, errorMessage } = values;
     
-    useEffect(() => {
-        getCurrencies();
-    }, [])
-
-    const formatToUSADollar = (value) => value.toLocaleString('eu-US')
-
     const updateCurrencies = (value) => 
         currencies.map((currency) =>  {
             const calculatedRate = value ? currency['rate_float'] * value : 0;
-    
                if(currency['code'] !== 'BTC') {
-                 return ({ ...currency, 'calculated_rate': formatToUSADollar(calculatedRate) });
+                 return ({ ...currency, 'calculated_rate': calculatedRate });
                }
                return currency;
             });
-    
+    const createCurrenciesInputs = () => currencies.map((currency, key) => {
+        if (currency['code'] !== 'BTC') {
+            return (
+                <CurrencyInput key={key} code={currency['code']} value={currency['calculated_rate']} />
+            )
+        }
+    });
 
     const onChange = (event) => {
         const { value } = event.target;
@@ -35,33 +33,6 @@ function Home() {
         });
     }
 
-    const fetchCurrencies = async () => {
-        const token = JSON.parse(localStorage.getItem('token'));
-        const headers = { headers: {
-            'Authorization': token,
-        }}
-        return axios.get('http://localhost:3001/api/crypto/btc', headers);
-    }
-
-    const formatCurrencies = ((currencies) => { 
-        const values = Object.values(currencies);
-        return values.map((value) => ({...value, 'calculated_rate': formatToUSADollar(value['rate_float'])}))
-    });
-    
-    const getCurrencies = async () => {
-        try {
-            const { data: { bpi } } = await fetchCurrencies()  
-            setValues({
-                ...values,
-                currencies: formatCurrencies(bpi),
-            });
-        } catch({response}) {
-            setValues({
-                ...values,
-                errorMessage: response.data.message,
-            })
-        }
-    }
     return !currencies ? <h1>Loading...</h1> :
      (
         <form>
@@ -71,13 +42,7 @@ function Home() {
                 <input name="BTC" value={btc} onChange={ onChange } type="number" min={1} />
             </label>
             <div>
-            {currencies.map((currency, key) => {
-                if (currency['code'] !== 'BTC') {
-                    return (
-                        <CurrencyInput key={key} code={currency['code']} value={currency['calculated_rate']} />
-                    )
-                }
-            })}
+            {createCurrenciesInputs()}
             </div>
             <span>{ errorMessage }</span>
         </form>

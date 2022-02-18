@@ -8,4 +8,8 @@ const successResponses = {
   ok: 200,
 };
 
-module.exports = { clientErrors, successResponses };
+const serverErrors = {
+  internalSeverError: 500,
+};
+
+module.exports = { clientErrors, successResponses, serverErrors };

@@ -21,6 +21,7 @@ function Home() {
                 <CurrencyInput key={key} code={currency['code']} value={currency['calculated_rate']} />
             )
         }
+        return '';
     });
 
     const onChange = (event) => {

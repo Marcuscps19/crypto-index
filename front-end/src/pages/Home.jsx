@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { CurrenciesContext } from '../contexts/Currencies';
 import CurrencyInput from '../components/CurrencyInput';
+import Loading from '../components/Loading';
+import Header from '../components/Header';
 function Home() {
     const navigate = useNavigate()
     const {values, setValues} = useContext(CurrenciesContext);
@@ -33,20 +35,26 @@ function Home() {
             errorMessage: null,
         });
     }
-
-    return !currencies ? <h1>Loading...</h1> :
+    return !currencies ? <Loading /> :
      (
-        <form>
-           <button onClick={() => navigate('/update-price')}>Atualizar valor monetário</button>
-           <label htmlFor="BTC">
-                BTC
-                <input name="BTC" value={btc} onChange={ onChange } type="number" min={1} />
-            </label>
-            <div>
-            {createCurrenciesInputs()}
+        <div className="container">
+           <Header />
+            <div className="container-body">
+                <form className='form-home'>
+                    <div className="container-btc-input">
+                        <label htmlFor="BTC">
+                            BTC:
+                            <input name="BTC" value={btc} onChange={ onChange } type="number" min={1} />
+                        </label>
+                    </div>
+                     <div className="container-currencies">
+                        {createCurrenciesInputs()}
+                    </div>
+                    <span>{ errorMessage }</span>
+                    <button type="button" onClick={() => navigate('/update-price')}>Atualizar valor monetário</button>
+                </form>
             </div>
-            <span>{ errorMessage }</span>
-        </form>
+        </div> 
     )
 }
 

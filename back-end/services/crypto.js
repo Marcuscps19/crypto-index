@@ -54,14 +54,13 @@ const addNewCurrencies = (data) => {
   return dataUpdatedWithNewCurrencies;
 };
 
-const updateCurrencyFromFile = (currency, value) => {
+const updateCurrencyFromFile = async (currency, value) => {
   currenciesJson[currency] = formatWithLocaleString(value);
-  fs.writeFile('back-end/utils/currencies.json', JSON.stringify(currenciesJson), (err) => {
-    if (err) {
-      return (err.message);
-    }
-    return 'Valor alterado com sucesso!';
-  });
+  await fs.promises
+    .writeFile(
+      '/home/marcus/crypto-index/back-end/utils/currencies.json',
+      JSON.stringify(currenciesJson),
+    );
 };
 
 module.exports = { fetchCurrencies, addNewCurrencies, updateCurrencyFromFile };

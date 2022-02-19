@@ -9,7 +9,7 @@ const successResponses = {
 };
 
 const serverErrors = {
-  internalSeverError: 500,
+  internalServerError: 500,
 };
 
 module.exports = { clientErrors, successResponses, serverErrors };

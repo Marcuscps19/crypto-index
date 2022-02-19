@@ -2,11 +2,11 @@
 
 * {
   box-sizing: border-box;
-  font-family: Poppins, sans-serif;
 }
 
 body {
   background-color: #8a2be2;
+  font-family: Poppins, sans-serif;
 }
 
 /* Login */
@@ -16,6 +16,8 @@ body {
   justify-content: center;
   width: 100%;
 }
+
+/* header */
 
 .page-title {
   border-radius: 1rem;
@@ -47,6 +49,8 @@ body {
   fill: #f18701;
 }
 
+/* Login  */
+
 .container-body {
   display: flex;
   flex-direction: row;
@@ -69,12 +73,8 @@ body {
   width: 60%;
 }
 
-.form-login,
-.form-title {
-  display: flex;
-  font-size: 2em;
+.form-login {
   font-weight: 700;
-  flex-direction: column;
   margin-top: 1rem;
   width: 60%;
 }
@@ -82,9 +82,9 @@ body {
 .form-title {
   color: #f18701;
   letter-spacing: 0.2em;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-shadow: 1px 1px 1px #5a5151;
-  padding: 1.5rem;
+  margin: 1rem;
 }
 
 .form-data {
@@ -96,6 +96,10 @@ body {
   width: 100%;
 }
 
+.form-data span {
+  margin-bottom: 1rem;
+}
+
 .form-data input {
   background-color: #8a2be2;
   border: none;
@@ -105,13 +109,6 @@ body {
   line-height: 2rem;
   padding: 0.3rem;
   width: 100%;
-}
-
-.form-data span,
-.form-home span {
-  color: #f00;
-  font-size: 1rem;
-  margin-bottom: 1rem;
 }
 
 .form-data button,
@@ -170,9 +167,6 @@ body {
 }
 
 /* Home */
-.container-home {
-  display: flex;
-}
 
 .form-home {
   align-items: center;
@@ -181,19 +175,22 @@ body {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  margin: auto;
-  margin-top: 1rem;
-  width: 100%;
-  padding: 2rem;
+  width: 90%;
+  padding: 3rem;
 }
 
 .container-btc-input {
-  display: flex;
-  font-size: 1.5rem;
-  width: 100%;
+  text-align: center;
 }
 
-.container-btc-input label {
+.container-currencies {
+  display: flex;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.container-btc-input label,
+.container-currencies {
   font-size: 2rem;
 }
 
@@ -204,25 +201,74 @@ body {
   border-radius: 0.4rem;
   color: #fff;
   font-size: 1.3rem;
-  line-height: 2rem;
-  margin-left: 1rem;
-  padding: 0.3rem;
+  line-height: 2.3rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 .container-btc-input input {
-  width: 20%;
+  width: 25%;
 }
 
 .container-currencies input {
-  width: 70%;
+  width: 90%;
 }
 
-.container-currencies {
+.form-home span {
+  margin: 1rem;
+  color: black;
+}
+
+/* UpdatePrice */
+
+.container-update-price {
+  align-items: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  margin: auto;
+  position: absolute;
+  top: 220px;
+  width: 80%;
+  padding-bottom: 1rem;
+}
+
+.form-update-price {
+  align-items: center;
+  margin: 1rem;
   font-size: 1.5rem;
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+.form-update-price label {
+  align-self: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-update-price input {
+  margin: 0.5rem 0;
+  width: 6rem;
+}
+
+.form-update-price select {
+  margin: 1rem 0;
+  width: 3.3rem;
+}
+
+.actual-value {
+  font-size: 1rem;
+  color: #000;
+  padding: 0 0 2rem;
+}
+
+.form-update-price .error-message {
+  font-size: 1rem;
+  color: red;
+  margin: 0;
 }
 
 /* Loader  */

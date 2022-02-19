@@ -58,7 +58,7 @@ const updateCurrencyFromFile = async (currency, value) => {
   currenciesJson[currency] = formatWithLocaleString(value);
   await fs.promises
     .writeFile(
-      '/home/marcus/crypto-index/back-end/utils/currencies.json',
+      './utils/currencies.json',
       JSON.stringify(currenciesJson),
     );
 };

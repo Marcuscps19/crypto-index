@@ -17,7 +17,7 @@ const updateCurrency = async (req, res) => {
       message: 'Valor alterado com sucesso!',
     });
   } catch (error) {
-    return res.status(serverErrors.internalSeverError)
+    return res.status(serverErrors.internalServerError)
       .json({ message: `Erro ao salvar arquivo + ${error}` });
   }
 };

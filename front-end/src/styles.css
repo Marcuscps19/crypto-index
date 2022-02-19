@@ -111,6 +111,10 @@ body {
   width: 100%;
 }
 
+.form-data .error-message {
+  color: red;
+}
+
 .form-data button,
 .form-home button {
   background-color: #8a2be2;

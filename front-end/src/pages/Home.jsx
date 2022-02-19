@@ -1,13 +1,46 @@
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { CurrenciesContext } from '../contexts/Currencies';
 import CurrencyInput from '../components/CurrencyInput';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
+import axios from 'axios';
 function Home() {
     const navigate = useNavigate()
     const {values, setValues} = useContext(CurrenciesContext);
     const { currencies, btc, errorMessage } = values;
+
+    useEffect(() => {
+        getCurrencies();
+      }, []);
+    
+      const formatCurrencies = ((currencies) => { 
+        const values = Object.values(currencies);
+        return values.map((value) => ({...value, 'calculated_rate': value['rate_float']}))
+    });
+    
+      const fetchCurrencies = async () => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const headers = { headers: {
+            'Authorization': token,
+        }}
+        return await axios.get('http://localhost:3001/api/crypto/btc', headers);
+    }
+      
+      const getCurrencies = async () => {
+        try {
+            const { data: { bpi } } = await fetchCurrencies()  
+            setValues({
+                ...values,
+                currencies: formatCurrencies(bpi),
+            });
+        } catch({response}) {
+            setValues({
+                ...values,
+                errorMessage: response.data.message,
+            })
+        }
+      }
     
     const updateCurrencies = (value) => 
         currencies.map((currency) =>  {
@@ -50,7 +83,7 @@ function Home() {
                      <div className="container-currencies">
                         {createCurrenciesInputs()}
                     </div>
-                    <span>{ errorMessage }</span>
+                    <span className='error-message'>{ errorMessage !== 'Valor inválido' ? errorMessage : '' }</span>
                     <button type="button" onClick={() => navigate('/update-price')}>Atualizar valor monetário</button>
                 </form>
             </div>

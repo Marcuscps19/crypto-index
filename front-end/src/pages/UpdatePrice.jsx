@@ -1,17 +1,40 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CurrenciesContext } from '../contexts/Currencies';
 import { formatValue } from '../components/CurrencyInput';
 import NumberFormat from 'react-number-format';
 import axios from 'axios';
 import Loading from '../components/Loading';
+import Header from '../components/Header';
 
 function UpdatePrice() {
     const { values, setValues } = useContext(CurrenciesContext);
     const navigate = useNavigate();
     const [currencyCode, setCurrencyCode] = useState('BRL');
     const [inputValue, setInputValue] = useState('');
-    const { currencies, errorMessage } = values;
+    const [currencies, setCurrencies] = useState('');
+    const { errorMessage } = values;
+
+    useEffect(() => {
+        getActualCurrencies() 
+    }, [])
+
+    const getActualCurrencies = async () => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const headers = { headers: {
+            'Authorization': token,
+        }}
+        try {
+            const response = await axios.get('http://localhost:3001/api/currencies', headers);
+            setCurrencies(JSON.parse(response.data));
+        } catch({ response }){
+            setValues({
+                ...values,
+                errorMessage: response.data.message,
+            })
+        }
+
+    }
 
     const onSelectChange = (event) => {
         setCurrencyCode(
@@ -23,18 +46,17 @@ function UpdatePrice() {
         setInputValue(event.value);
     }
 
-    const getCodesFromCurrencies = () => currencies.map((currency, key) => {
-        if(currency['code'] !== 'USD' && currency['code'] !== 'BTC')
-            return <option key={key} value={currency['code']}>{currency['code']}</option>
-        return ''
-    })
+    const getCodesFromCurrencies = () => Object
+    .entries(currencies)
+    .map((currency, key) => <option key={key} value={currency[0]}>{currency[0]}</option>);
 
-    const getActualCurrencyValue = () => currencies.map((currency) => {
-        console.log(currency)
-        if(currency['code'] === currencyCode) {
-            return formatValue(currency['code'], currency['rate_float'])
+    const getActualCurrencyValue = () => Object
+    .entries(currencies)
+    .map((currency) => {
+        if(currency[0] === currencyCode) {
+           return formatValue(currency[0], parseFloat(currency[1]))
         }
-        return ''
+        return '';
     });
 
     const postCurrencies = async () => {
@@ -76,32 +98,37 @@ function UpdatePrice() {
     }
 
     return !currencies ? <Loading /> : (
-        <div>
-            <form onSubmit={updateCurrency}>
-            <button type="buttton" onClick={() => navigate('/')}>Voltar</button>
-            <label htmlFor="currency">
-                    Moeda
-                    <select name="currency" onChange={ onSelectChange }>
-                        {getCodesFromCurrencies()}    
-                    </select>
-                    <span>Valor atual: {getActualCurrencyValue()}</span>
-                    
-                </label>
-                <label htmlFor="new-value">
-                    Novo valor:
-                    <NumberFormat
-                        name="new-value"
-                        thousandSeparator={true}
-                        prefix={getPrefix()}
-                        allowNegative={false}
-                        onValueChange={onInputChange}
-                        decimalSeparator='.'
-                        required
-                    />
-                </label>
-                <span>{ errorMessage }</span>
-                <button type="submit">ATUALIZAR</button>
-            </form>
+        <div className="container">
+            <Header />
+            <div className="container-update-price">
+                <form className="form-home" onSubmit={updateCurrency}>
+                <button type="button" onClick={() => navigate('/')}>Voltar</button>
+                <div className="form-update-price">
+                    <label htmlFor="currency">
+                        Moeda:
+                        <select name="currency" onChange={ onSelectChange }>
+                            {getCodesFromCurrencies()}    
+                        </select>
+                    </label>
+                    <span className="actual-value">Valor atual: {getActualCurrencyValue()}</span>
+                    <label htmlFor="new-value">
+                        Novo valor:
+                        <NumberFormat
+                            className="input-new-value"
+                            name="new-value"
+                            thousandSeparator={true}
+                            prefix={getPrefix()}
+                            allowNegative={false}
+                            onValueChange={onInputChange}
+                            decimalSeparator='.'
+                            required
+                        />
+                    </label>
+                    <span className="error-message">{ errorMessage !== 'Valor inválido' ? '' : errorMessage }</span>
+                </div>
+                    <button type="submit">ATUALIZAR</button>
+                </form>
+            </div>
         </div>
     )
 }

@@ -398,4 +398,10 @@ body {
   .container-currencies input {
     width: 70%;
   }
+
+  /* Update Price */
+
+  .container-update-price {
+    width: 100%;
+  }
 }

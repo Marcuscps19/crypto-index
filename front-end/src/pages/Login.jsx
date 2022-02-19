@@ -37,7 +37,7 @@ function Login() {
            <Header />
             <div className="container-body">
                 <div className="container-form">
-                    <h2 className="form-title">Fazer Login</h2>
+                    <h2 className="form-title">Login</h2>
                     <form className="form-login" onSubmit={onSubmit}>
                         <div className="form-data">
                             <label htmlFor="email">
@@ -66,7 +66,7 @@ function Login() {
                             >
                                 Entrar
                             </button>
-                            <span>{values.errorMessage}</span>
+                            <span className='error-message'>{values.errorMessage}</span>
                         </div>
                     </form>
                 </div>

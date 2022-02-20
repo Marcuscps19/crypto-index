@@ -13,6 +13,8 @@ function UpdatePrice() {
     const [currencyCode, setCurrencyCode] = useState('BRL');
     const [inputValue, setInputValue] = useState('');
     const [currencies, setCurrencies] = useState('');
+    const API_URL = process.env.REACT_APP_URL || 'http://localhost:3001'
+
 
     useEffect(() => {
         getActualCurrencies() 
@@ -24,7 +26,7 @@ function UpdatePrice() {
             'Authorization': token,
         }}
         try {
-            const response = await axios.get('http://localhost:3001/api/currencies', headers);
+            const response = await axios.get(`${API_URL}/api/currencies`, headers);
             setCurrencies(JSON.parse(response.data));
         } catch({ response }){
             setMessage(response.data.message);

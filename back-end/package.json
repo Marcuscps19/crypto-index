@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "engines": {
-    "node": "16.13.0"
-  },
+
   "scripts": {
     "start": "node server.js",
-    "test": "mocha ./back-end/tests/**/*$NAME*.test.js --exit",
-    "build": "cd front-end && npm install && npm run build"
+    "test": "mocha ./back-end/tests/**/*$NAME*.test.js --exit"
   },
   "author": "",
   "license": "ISC",

@@ -12,6 +12,7 @@ function Home() {
         currencies: null,
         btc: 1,
       });
+      const API_URL = process.env.REACT_APP_URL || 'http://localhost:3001';
     const [values, setValues] = useState(initialState);
     const { currencies, btc } = values;
 
@@ -30,7 +31,7 @@ function Home() {
         const headers = { headers: {
             'Authorization': token,
         }}
-        return await axios.get('http://localhost:3001/api/crypto/btc', headers);
+        return await axios.get(`${API_URL}/api/crypto/btc`, headers);
     }
       
       const getCurrencies = async () => {

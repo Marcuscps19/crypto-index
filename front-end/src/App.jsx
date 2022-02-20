@@ -1,11 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { LoginProvider } from './contexts/Login';
 import RequireAuth from './contexts/RequireAuth'
+import { MessageProvider } from './contexts/Message'
 import Login from './pages/Login';
 import Home from './pages/Home';
 import UpdatePrice from './pages/UpdatePrice';
-import {CurrenciesProvider} from './contexts/Currencies'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './reset.css'
 import './styles.css'
@@ -20,9 +19,9 @@ function App() {
             path="/"
             element={
             <RequireAuth redirectTo="/login">
-              <CurrenciesProvider>
+              <MessageProvider>
                   <Home />
-              </CurrenciesProvider>
+              </MessageProvider>
             </RequireAuth>
           } 
           >
@@ -31,18 +30,16 @@ function App() {
           path="/update-price"
           element={
             <RequireAuth redirectTo="/login">
-              <CurrenciesProvider>
+              <MessageProvider>
                 <UpdatePrice />
-              </CurrenciesProvider>
+              </MessageProvider>
             </RequireAuth>
           }
           ></Route>
           <Route
             path="/login"
             element= {
-            <LoginProvider>
               <Login />
-            </LoginProvider>
             }
           >
           </Route>

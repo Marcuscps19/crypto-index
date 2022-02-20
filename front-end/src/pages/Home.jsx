@@ -1,14 +1,20 @@
 import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-import { CurrenciesContext } from '../contexts/Currencies';
+import { useContext, useEffect, useState } from 'react';
+import { MessageContext } from '../contexts/Message';
 import CurrencyInput from '../components/CurrencyInput';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
 import axios from 'axios';
 function Home() {
     const navigate = useNavigate()
-    const {values, setValues} = useContext(CurrenciesContext);
-    const { currencies, btc, errorMessage } = values;
+    const { message, setMessage } = useContext(MessageContext);
+    const initialState = () => ({
+        currencies: null,
+        btc: 1,
+      });
+    const [values, setValues] = useState(initialState);
+    const { currencies, btc } = values;
+
 
     useEffect(() => {
         getCurrencies();
@@ -35,10 +41,7 @@ function Home() {
                 currencies: formatCurrencies(bpi),
             });
         } catch({response}) {
-            setValues({
-                ...values,
-                errorMessage: response.data.message,
-            })
+            setMessage(response.data.message);
         }
       }
     
@@ -53,7 +56,10 @@ function Home() {
     const createCurrenciesInputs = () => currencies.map((currency, key) => {
         if (currency['code'] !== 'BTC') {
             return (
-                <CurrencyInput key={key} code={currency['code']} value={currency['calculated_rate']} />
+                <CurrencyInput 
+                    key={key} 
+                    code={currency['code']} 
+                    value={currency['calculated_rate']} />
             )
         }
         return '';
@@ -65,7 +71,6 @@ function Home() {
         setValues({
             currencies: updatedCurrencies,
             btc: value,
-            errorMessage: null,
         });
     }
     return !currencies ? <Loading /> :
@@ -83,7 +88,7 @@ function Home() {
                      <div className="container-currencies">
                         {createCurrenciesInputs()}
                     </div>
-                    <span className='error-message'>{ errorMessage !== 'Valor inválido' ? errorMessage : '' }</span>
+                    <span className='error-message'>{ message !== 'Valor inválido' ? message : '' }</span>
                     <button type="button" onClick={() => navigate('/update-price')}>Atualizar valor monetário</button>
                 </form>
             </div>

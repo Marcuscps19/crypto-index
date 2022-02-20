@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CurrenciesContext } from '../contexts/Currencies';
+import { MessageContext } from '../contexts/Message';
 import { formatValue } from '../components/CurrencyInput';
 import NumberFormat from 'react-number-format';
 import axios from 'axios';
@@ -8,12 +8,11 @@ import Loading from '../components/Loading';
 import Header from '../components/Header';
 
 function UpdatePrice() {
-    const { values, setValues } = useContext(CurrenciesContext);
+    const { message, setMessage } = useContext(MessageContext);
     const navigate = useNavigate();
     const [currencyCode, setCurrencyCode] = useState('BRL');
     const [inputValue, setInputValue] = useState('');
     const [currencies, setCurrencies] = useState('');
-    const { errorMessage } = values;
 
     useEffect(() => {
         getActualCurrencies() 
@@ -28,10 +27,7 @@ function UpdatePrice() {
             const response = await axios.get('http://localhost:3001/api/currencies', headers);
             setCurrencies(JSON.parse(response.data));
         } catch({ response }){
-            setValues({
-                ...values,
-                errorMessage: response.data.message,
-            })
+            setMessage(response.data.message);
         }
 
     }
@@ -76,16 +72,10 @@ function UpdatePrice() {
         event.preventDefault();
         try {
             const response = await postCurrencies();
-            setValues({
-                ...values,
-                errorMessage: response.data.message,
-            });
+            setMessage(response.data.message);
             navigate('/');
         } catch({ response }) {
-            setValues({
-                ...values,
-                errorMessage: response.data.message,
-            });
+            setMessage(response.data.message);
         }
     }
 
@@ -124,7 +114,7 @@ function UpdatePrice() {
                             required
                         />
                     </label>
-                    <span className="error-message">{ errorMessage !== 'Valor inválido' ? '' : errorMessage }</span>
+                    <span className="error-message">{ message !== 'Valor inválido' ? '' : message }</span>
                 </div>
                     <button type="submit">ATUALIZAR</button>
                 </form>

@@ -1,12 +1,18 @@
-import { useContext } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoginContext } from '../contexts/Login';
 import axios from 'axios';
 import Header from '../components/Header';
 
 function Login() {
-    const { values, setValues } = useContext(LoginContext);
     const navigate = useNavigate();
+    const initialState = () => ({
+        email: '',
+        password: '',
+        errorMessage: null,
+      });
+    const [values, setValues] = useState(initialState);
+
+
 
     const onChange = (event) => {
         const { value, name } = event.target;

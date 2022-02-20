@@ -1,6 +1,5 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 const initialState = () => ({
   currencies: null,
@@ -11,6 +10,7 @@ const initialState = () => ({
 export const CurrenciesContext = createContext();
 
 export function CurrenciesProvider({ children }) {
+
   const [values, setValues] = useState(initialState);
   const memoizedValues = useMemo(() => ({ values, setValues }), [values]);
 

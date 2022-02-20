@@ -8,6 +8,7 @@ import UpdatePrice from './pages/UpdatePrice';
 import { BrowserRouter as Router } from 'react-router-dom'
 import './reset.css'
 import './styles.css'
+import NotFound from './pages/NotFound';
 
 // Source Routes Authentication https://gist.github.com/mjackson/d54b40a094277b7afdd6b81f51a0393f
 function App() {
@@ -15,6 +16,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path='*' element={<NotFound />} />
           <Route 
             path="/"
             element={

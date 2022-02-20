@@ -9,6 +9,35 @@ body {
   font-family: Poppins, sans-serif;
 }
 
+/* 404 page */
+
+.container-not-found {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 220px;
+  width: 100%;
+}
+
+.title-not-found {
+  align-self: center;
+  font-size: 3rem;
+  text-align: center;
+  width: 60%;
+}
+
+.img-not-found {
+  align-self: center;
+  max-width: 70%;
+}
+
+.page-title {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 /* Login */
 
 .container {
@@ -314,6 +343,29 @@ body {
     height: calc(100vh - 80px);
   }
 
+  .container-not-found {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 220px;
+    width: 100%;
+  }
+  
+  .title-not-found {
+    align-self: center;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    width: 60%;
+  }
+
+  .img-not-found {
+    margin-top: 2rem;
+    max-width: 100%;;
+    width: 90%;
+  }
+  
   .page-title {
     font-size: 3rem;
   }

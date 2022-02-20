@@ -80,8 +80,6 @@ function Login() {
                         <li>- Real</li>
                     </ul>
                     <p>Atualize os valores da cotação do Dólar Canadense, Euro e Real.</p>
-                    {/* Image Source: https://giphy.com/gifs/joinhoney-f9qwUQW56qC7BeCfCM
-                <img src='https://media1.giphy.com/media/f9qwUQW56qC7BeCfCM/giphy.gif?cid=ecf05e477e0wmxie7c3qpjgoofgz7gby1mbyjdlqkblkrhku&rid=giphy.gif&ct=g' alt='gif de uma moeda andando' /> */}
                 </aside>
             </div>
         </div>

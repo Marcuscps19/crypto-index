@@ -80,7 +80,7 @@ npm start
 - Adicionar testes de front-end
 - Adicionar testes de back-end
 - Adicionar valores reais para as moedas Dólar canadense, Euro e Real
-- Trazer novas moedas
+- Adicionar novas moedas
 
 Para mais informações ou sugestões:
 

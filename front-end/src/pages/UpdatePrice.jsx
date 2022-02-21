@@ -13,7 +13,7 @@ function UpdatePrice() {
     const [currencyCode, setCurrencyCode] = useState('BRL');
     const [inputValue, setInputValue] = useState('');
     const [currencies, setCurrencies] = useState('');
-    const API_URL = process.env.REACT_APP_URL || 'http://localhost:3001'
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001'
 
 
     useEffect(() => {
@@ -26,7 +26,7 @@ function UpdatePrice() {
             'Authorization': token,
         }}
         try {
-            const response = await axios.get(`${API_URL}/api/currencies`, headers);
+            const response = await axios.get(`https://murmuring-caverns-62079.herokuapp.com/api/currencies`, headers);
             setCurrencies(JSON.parse(response.data));
         } catch({ response }){
             setMessage(response.data.message);

@@ -10,7 +10,7 @@ function Login() {
         password: '',
         errorMessage: null,
       });
-    const API_URL = process.env.REACT_APP_URL || 'http://localhost:3001';
+    const API_URL = process.env.REACT_APP_API_URL;
     const [values, setValues] = useState(initialState);
 
 
@@ -27,7 +27,7 @@ function Login() {
         event.preventDefault();
         const { email, password } = values;
         try {
-            const { data: { token } } = await axios.post(`${API_URL}/api/login`, 
+            const { data: { token } } = await axios.post(`https://murmuring-caverns-62079.herokuapp.com/api/login`, 
             { email, password });
             localStorage.setItem("token", JSON.stringify(token));
             navigate('/')

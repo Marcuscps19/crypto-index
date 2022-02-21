@@ -1,4 +1,4 @@
-# Tech News :coin:
+# Crypto Index :coin:
 
 ### Descrição:
 Aplicação em NodeJs e React Js onde é possível verificar o valor do Bitcoin nas seguintes moedas:

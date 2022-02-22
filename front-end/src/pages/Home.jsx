@@ -31,7 +31,7 @@ function Home() {
         const headers = { headers: {
             'Authorization': token,
         }}
-        return await axios.get(`https://murmuring-caverns-62079.herokuapp.com//api/crypto/btc`, headers);
+        return await axios.get(`${API_URL}api/crypto/btc`, headers);
     }
       
       const getCurrencies = async () => {

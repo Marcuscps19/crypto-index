@@ -26,7 +26,7 @@ function UpdatePrice() {
             'Authorization': token,
         }}
         try {
-            const response = await axios.get(`https://murmuring-caverns-62079.herokuapp.com/api/currencies`, headers);
+            const response = await axios.get(`${API_URL}api/currencies`, headers);
             setCurrencies(JSON.parse(response.data));
         } catch({ response }){
             setMessage(response.data.message);
@@ -64,7 +64,7 @@ function UpdatePrice() {
             'Content-type': 'application/json',
             'Authorization': token,
         }
-        return await axios.post('http://localhost:3001/api/crypto/btc', {
+        return await axios.post(`${API_URL}api/crypto/btc`, {
                 "currency": currencyCode,
                 "value": inputValue,
         }, { headers: headers });

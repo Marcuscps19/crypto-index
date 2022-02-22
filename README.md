@@ -8,7 +8,8 @@ Aplicação em NodeJs e React Js onde é possível verificar o valor do Bitcoin 
 - Real
 
 ### Deploy da aplicação:
-[Crypto Index](https://crypto-index-client.herokuapp.com/)
+<!-- Dica do _blank: https://stackoverflow.com/questions/4425198/can-i-create-links-with-target-blank-in-markdown -->
+[Crypto Index](https://crypto-index-client.herokuapp.com/){:target="_blank"}
 
 É possível colocar a quantidade de Bitcoins desejada e ter a visualização do valor nas moedas citadas anteriormente.
 A aplicação faz o uso da API da Coindesk para trazer o valor atualizado do Bitcoin em Dólar americano, os valores das outras moedas foram adicionados em um arquivo e tem seus valores(perante ao dólar) fictícios e através da aplicação é possível alterar esses valores.

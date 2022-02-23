@@ -6,7 +6,7 @@ const getActualCurrencies = async (_req, res, next) => {
   if (response.message) {
     return next({ message: response.message, statusCode: serverErrors.internalServerError });
   }
-  return res.status(successResponses.ok).json(response);
+  return res.status(successResponses.ok).json(JSON.parse(response));
 };
 
 module.exports = { getActualCurrencies };

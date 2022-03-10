@@ -10,8 +10,13 @@
     3. [Atualizar valor monetários](#update)
     4. [Página não encontrada - Erro 404](#not-found)
 5. [Como rodar a aplicação no Visual Studio Code](#run-app)
-6. [Próximos passos](#next-features)
-7. [Informações de contato e sugestões](#contact)
+6. [Utilizando a API](#api)
+    1. [Rota POST /api/login](#post-login)
+    2. [Rota GET /api/crypto/btc](#get-btc)
+    3. [Rota POST /api/crypto/btc](#post-btc)
+    4. [ROTA GET /api/currencies](#get-currencies)
+8. [Próximos passos](#next-features)
+9. [Informações de contato e sugestões](#contact)
 
 ### Descrição: <a name="descricao" />
 Aplicação em NodeJs e React Js onde é possível verificar o valor do Bitcoin nas seguintes moedas:
@@ -87,6 +92,171 @@ npm i
 
 npm start
 // aguarde e a aplicação abrirá no navegador
+```
+
+## Utilizando a API: <a name="api" />
+
+### Rota GET /api/login <a name="post-login" />
+    
+Corpo de uma requisição para esse endpoint:
+
+```json
+{
+    "email": "email@gmail.com",
+    "password": "123456"
+}    
+```
+Se o formato do corpo da requisição estiver correto a API retornará um token com dezesseis dígitos alfanuméricos:
+
+```json
+{
+    "token": "1919bfc4fa95c7f6"
+}
+```
+
+Caso o corpo da requisição esteja vazio ou a chave **email** não possua um e-mail no formato válido ou a chave **password** não possua uma string contendo seis números o retorno da API será:
+
+```json
+{
+    "message": "Campos inválidos"
+}
+```
+
+### Rota GET /api/crypto/btc <a name="get-btc" />
+    
+O cabeçalho para essa requisição deve possuir uma chave **Authorization** contendo um valor com dezesseis dígitos alfanuméricos:
+
+```sh
+    Authorization: 1919bfc4fa95c7f6
+```
+
+Se a chave **Authorization** não for passada no cabeçalho, ou se o valor dessa chave não for válido o retorno será: 
+
+```json
+{
+    "message": "Token inválido"
+}
+```
+
+Se o cabeçalho possuir um campo **Authorization** em formato válido, a API retornará com informações das moedas:
+
+```json
+{
+    "time": {
+        "updated": "Mar 10, 2022 21:24:00 UTC",
+        "updatedISO": "2022-03-10T21:24:00+00:00",
+        "updateduk": "Mar 10, 2022 at 21:24 GMT"
+    },
+    "disclaimer": "This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org",
+    "bpi": {
+        "USD": {
+            "code": "USD",
+            "rate": "39,536.9417",
+            "description": "United States Dollar",
+            "rate_float": 39536.9417
+        },
+        "BTC": {
+            "code": "BTC",
+            "rate": "1.0000",
+            "description": "Bitcoin",
+            "rate_float": 1
+        },
+        "BRL": {
+            "code": "BRL",
+            "rate": "215,476.332",
+            "description": "Brazilian Real",
+            "rate_float": 215476.33226500003
+        },
+        "EUR": {
+            "code": "EUR",
+            "rate": "36,373.986",
+            "description": "Euro",
+            "rate_float": 36373.986364000004
+        },
+        "CAD": {
+            "code": "CAD",
+            "rate": "56,933.196",
+            "description": "Canadian Dollar",
+            "rate_float": 56933.196048000005
+        }
+    }
+}
+```
+
+### Rota POST /api/crypto/btc <a name="post-btc" />
+    
+O cabeçalho para essa requisição deve possuir uma chave **Authorization** contendo um valor com dezesseis dígitos alfanuméricos:
+
+```sh
+    Authorization: 1919bfc4fa95c7f6
+```
+
+Se a chave **Authorization** não for passada no cabeçalho, ou se o valor dessa chave não for válido o retorno será: 
+
+```json
+{
+    "message": "Token inválido"
+}
+```
+
+O corpo para essa requisição deve possuir o seguinte formato:
+
+```json
+{
+  "currency": "BRL",
+  "value": 5.45
+}
+```
+
+Caso a chave **currency** não seja passada, ou o seu valor seja diferente de "BRL", "CAD" ou "EUR" o retorno da API será:
+
+```json
+{
+    "message": "Moeda inválida"
+}
+```
+
+Caso a chave **value** não seja passada, ou seu valor seja menor ou igual a zero o retorno será:
+*Para adicionar casas decimasi deve-se usar o separador ".".
+
+```json
+{
+    "message": "Valor inválido"
+}
+```
+
+Se o corpo for passado no formato correto e o cabeçalho possuir uma chave **Authorization** com valor válido, a API retornará um JSON no seguinte formato:
+
+```json
+{
+    "message": "Valor alterado com sucesso!"
+}
+```
+
+### Rota GET /api/currencies <a name="get-currencies" />
+
+O cabeçalho para essa requisição deve possuir uma chave **Authorization** contendo um valor com dezesseis dígitos alfanuméricos:
+
+```sh
+    Authorization: 1919bfc4fa95c7f6
+```
+
+Se a chave **Authorization** não for passada no cabeçalho, ou se o valor dessa chave não for válido o retorno será: 
+
+```json
+{
+    "message": "Token inválido"
+}
+```
+
+Se o cabeçalho possuir uma chave **Authorization** com um valor válido a API retornará os valores atuais das moedas:
+
+```json
+{
+    "BRL": "5.45",
+    "EUR": "0.920",
+    "CAD": "1.440"
+}
 ```
 
 ### Próximos passos <a name="next-features" />
